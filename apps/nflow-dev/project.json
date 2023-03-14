@@ -1,0 +1,24 @@
+{
+  "name": "nflow-dev",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/nflow-dev/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/nflow-dev/cypress.config.ts",
+        "baseUrl": "https://dev.ncore.dev.v2.nuclent.com",
+        "testingType": "e2e"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/nflow-dev/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": []
+}

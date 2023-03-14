@@ -1,0 +1,24 @@
+{
+  "name": "bcg-search-portal",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/bcg-search-portal/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/bcg-search-portal/cypress.config.ts",
+        "baseUrl": "https://search-portal.bcg.mscnr.com",
+        "testingType": "e2e"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/bcg-search-portal/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": []
+}
