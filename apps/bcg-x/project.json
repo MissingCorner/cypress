@@ -1,0 +1,24 @@
+{
+  "name": "bcg-x",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/bcg-x/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/bcg-x/cypress.config.ts",
+        "baseUrl": "https://sbx.x.bcg.com/",
+        "testingType": "e2e"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/bcg-x/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": []
+}

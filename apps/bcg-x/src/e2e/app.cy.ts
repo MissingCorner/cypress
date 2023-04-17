@@ -13,8 +13,10 @@ describe('Project', () => {
     loadCredential();
   });
 
-  it('should login', () => {
-    cy.get('[class="mantine-Text-root mantine-1aw9h4g"]').should('contain');
+  it('should display welcome message', () => {
+    cy.get('h1').should(
+      'contain',
+      'BCG X Portal is a command center for case operations, tooling, and digital asset management'
+    );
   });
 });
-``;
