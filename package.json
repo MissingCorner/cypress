@@ -2,9 +2,13 @@
   "name": "cypress",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "cypress": "nx e2e --component --watch"
+  },
   "private": true,
-  "dependencies": {},
+  "dependencies": {
+    "dotenv": "^16.0.3"
+  },
   "devDependencies": {
     "@nrwl/cypress": "^15.8.6",
     "@nrwl/eslint-plugin-nx": "15.8.6",
@@ -14,7 +18,7 @@
     "@types/node": "16.11.7",
     "@typescript-eslint/eslint-plugin": "^5.36.1",
     "@typescript-eslint/parser": "^5.36.1",
-    "cypress": "^12.2.0",
+    "cypress": "12.9.0",
     "eslint": "~8.15.0",
     "eslint-config-prettier": "8.1.0",
     "eslint-plugin-cypress": "^2.10.3",
