@@ -17,4 +17,3 @@ describe('Project', () => {
     cy.get('[class="mantine-Text-root mantine-1aw9h4g"]').should('contain');
   });
 });
-``;

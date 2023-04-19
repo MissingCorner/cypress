@@ -3,5 +3,5 @@ export const loadCredential = () => {
   cy.get('#idp-discovery-submit').click();
 
   cy.get('#input29').type(Cypress.env('password'));
-  cy.get('[value="Verify"]').click();
+  cy.get('[value="Verify"]').click({ timeout: 15000 });
 };
