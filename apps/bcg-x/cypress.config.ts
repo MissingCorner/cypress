@@ -1,5 +1,5 @@
-import { defineConfig } from 'cypress';
 import { nxE2EPreset } from '@nrwl/cypress/plugins/cypress-preset';
+import { defineConfig } from 'cypress';
 
 import * as dotenv from 'dotenv';
 dotenv.config();
@@ -9,4 +9,5 @@ export default defineConfig({
     username: process.env.BCG_USERNAME,
     password: process.env.BCG_PASSWORD,
   },
+  watchForFileChanges: false,
 });
