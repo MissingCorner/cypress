@@ -1,6 +1,6 @@
 import { loadCredential } from '../support/app.po';
 
-describe('Project', () => {
+describe('Website URl Test', () => {
   beforeEach(() => {
     //Health check
     cy.request('/').should((res) => {
@@ -12,6 +12,7 @@ describe('Project', () => {
     cy.visit('/');
     cy.intercept('https://logon.okta.com/idp/idx/challenge/answer').as('login');
     loadCredential();
+    //check redirect
     cy.url().should('contain', 'okta.com');
     cy.wait('@login', { timeout: 15000 }).end();
   });
@@ -22,6 +23,7 @@ describe('Project', () => {
       'BCG X Portal is a command center for case operations, tooling, and digital asset management'
     );
 
+    //check format URL
     cy.url()
       .should('contain', 'https://')
       .then((url) => {
@@ -30,6 +32,7 @@ describe('Project', () => {
         expect(url.includes('/portal')).to.be.true;
       });
 
+    //Check prevent XSS attack
     const maliciousInput = '<script>alert("XSS attack!")</script>';
     const spy = cy.spy(window, 'alert');
     cy.visit(
