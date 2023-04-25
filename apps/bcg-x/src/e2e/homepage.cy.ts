@@ -1,3 +1,4 @@
+import dimensions from '../fixtures/dimensions';
 import { loadCredential } from '../support/app.po';
 
 describe('Home Page', () => {
@@ -92,5 +93,22 @@ describe('Home Page', () => {
       .then(() =>
         cy.get('[class="mantine-Menu-dropdown mantine-o9nkkk"]').should('exist')
       );
+  });
+});
+
+describe.only('Responsive', () => {
+  Object.values(dimensions).map((d) => {
+    it('Scrolling', () => {
+      cy.viewport(d.viewportWidth, d.viewportHeight);
+      cy.visit('/');
+      cy.intercept('https://logon.okta.com/idp/idx/challenge/answer').as(
+        'login'
+      );
+      loadCredential();
+      cy.wait('@login', { timeout: 15000 }).then(() => {
+        cy.scrollTo('bottom', { duration: 5000 });
+        cy.scrollTo('top', { duration: 5000 });
+      });
+    });
   });
 });
