@@ -17,11 +17,6 @@ describe('Home Page', () => {
   });
 
   it('side bar', () => {
-    cy.get('h1').should(
-      'contain',
-      'BCG X Portal is a command center for case operations, tooling, and digital asset management'
-    );
-
     cy.get('[href="/portal/cases"]')
       .click()
       .then(() => cy.get('h1').should('contain', 'My Cases'));
@@ -31,15 +26,35 @@ describe('Home Page', () => {
     cy.get('[href="/portal/catalog"]')
       .click()
       .then(() => cy.get('h1').should('contain', 'Catalog'));
+    cy.get('[href="/"]')
+      .click()
+      .then(() => {
+        cy.get('h1').should(
+          'contain',
+          'BCG X Portal is a command center for case operations, tooling, and digital asset management'
+        );
+      });
+    // cy.get('[href="/portal"]')
+    //   .click()
+    //   .then(() => {
+    //     cy.get('h1').should(
+    //       'contain',
+    //       'BCG X Portal is a command center for case operations, tooling, and digital asset management'
+    //     );
+    //   });
+    // cy.get('[href="https://bcg.stackenterprise.co/"]')
+    //   .invoke('removeAttr', 'target')
+    //   .click()
+    //   .then(() =>
+    //     cy.get('p').should('contain', 'Welcome to Stack Overflow Enterprise')
+    //   );
 
     cy.get('[class="mantine-1avyp1d"]')
       .first()
       .within(() => {
-        return cy
-          .get(
-            '[class="mantine-Paper-root mantine-Dialog-root mantine-5egran"]'
-          )
-          .should('not.exist');
+        cy.get(
+          '[class="mantine-Paper-root mantine-Dialog-root mantine-5egran"]'
+        ).should('not.exist');
       });
     cy.get('[class="mantine-zdsmph"]')
       .first()
@@ -60,11 +75,9 @@ describe('Home Page', () => {
     cy.get('[class="mantine-1avyp1d"]')
       .eq(1)
       .within(() => {
-        return cy
-          .get(
-            '[class="mantine-Paper-root mantine-Dialog-root mantine-5egran"]'
-          )
-          .should('not.exist');
+        cy.get(
+          '[class="mantine-Paper-root mantine-Dialog-root mantine-5egran"]'
+        ).should('not.exist');
       });
     cy.get('[class="mantine-zdsmph"]')
       .eq(1)
@@ -94,9 +107,76 @@ describe('Home Page', () => {
         cy.get('[class="mantine-Menu-dropdown mantine-o9nkkk"]').should('exist')
       );
   });
+
+  it('main content', () => {
+    cy.contains('span', 'Explore Catalog')
+      .click()
+      .then(() => cy.get('h1').should('contain', 'Catalog'));
+    cy.get('[href="/"]').click();
+
+    cy.contains('span', 'Create a case')
+      .click()
+      .then(() => cy.get('h1').should('contain', 'Create new case'));
+    cy.get('[href="/"]').click();
+
+    cy.contains(
+      'div[class="mantine-Text-root mantine-pxsdk"]',
+      'Lighthouse Dataset'
+    )
+      .click()
+      .then(() => {
+        cy.get('h1').should('contain', 'Catalog');
+        cy.url().should(
+          'contain',
+          '/catalog?orderBy=name&sortOrder=ASC&tags=LIGHTHOUSE'
+        );
+      });
+    cy.get('[href="/"]').click();
+
+    cy.contains(
+      'div[class="mantine-Text-root mantine-pxsdk"]',
+      'Infrastructure Assets'
+    )
+      .click()
+      .then(() => {
+        cy.get('h1').should('contain', 'Catalog');
+        cy.url().should('contain', '/catalog?badgeType=infra');
+      });
+    cy.get('[href="/"]').click();
+
+    cy.contains('div[class="mantine-Text-root mantine-pxsdk"]', 'My Sandbox')
+      .click()
+      .then(() => {
+        cy.get('h1').should('contain', 'My Sandbox');
+        cy.url().should('contain', '/portal/cases/sandbox/');
+      });
+    cy.get('[href="/"]').click();
+
+    cy.contains(
+      'div[class="mantine-Text-root mantine-pxsdk"]',
+      'My Support Tickets'
+    )
+      .click()
+      .then(() => {
+        cy.get('h1').should('contain', 'Account');
+        cy.url().should('contain', '/portal/account/support-tickets');
+      });
+    cy.get('[href="/"]').click();
+
+    cy.get('div[class="mantine-Text-root mantine-pxsdk"]')
+      .eq(5)
+      .click()
+      .then(() => {
+        cy.get('div[class="mantine-Text-root mantine-1vzvxsh"]').should(
+          'contain',
+          'Is this related to a case or a personal request?'
+        );
+        cy.contains('span', 'Cancel').click();
+      });
+  });
 });
 
-describe.only('Responsive', () => {
+describe('Responsive', () => {
   Object.values(dimensions).map((d) => {
     it('Scrolling', () => {
       cy.viewport(d.viewportWidth, d.viewportHeight);
