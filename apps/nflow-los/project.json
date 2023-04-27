@@ -1,0 +1,24 @@
+{
+  "name": "nflow-los",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/nflow-los/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/nflow-los/cypress.config.ts",
+        "baseUrl": "https://nlos.ncore.dev.v2.nuclent.com/",
+        "testingType": "e2e"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/nflow-los/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": []
+}
