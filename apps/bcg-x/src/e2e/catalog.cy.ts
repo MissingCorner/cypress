@@ -45,16 +45,21 @@ describe('Catalog', () => {
       cy.wrap(buttons).eq(11).click();
     });
 
-    cy.get('[mantine-Checkbox-input mantine-rxnhd4]').then((checkboxes) => {
-      cy.wrap(checkboxes).eq(0).check();
-      cy.wrap(checkboxes).eq(1).check();
-      cy.wrap(checkboxes).eq(2).check();
-      cy.contains('span', ' + 14 more').click();
+    cy.get('[class="mantine-Checkbox-input mantine-rxnhd4"]').then(
+      (checkboxes) => {
+        cy.wrap(checkboxes).eq(0).check();
+        cy.wrap(checkboxes).eq(1).check();
+        cy.wrap(checkboxes).eq(2).check();
+        cy.contains('span', ' + 14 more').click();
 
-      cy.wrap(checkboxes).eq(17).check();
-      cy.wrap(checkboxes).eq(18).check();
-      cy.wrap(checkboxes).eq(19).check();
-      cy.contains('span', ' + 29 more').click();
-    });
+        cy.wrap(checkboxes).eq(17).check();
+        cy.wrap(checkboxes).eq(18).check();
+        cy.wrap(checkboxes).eq(19).check();
+        cy.contains('span', ' + 29 more').click();
+      }
+    );
+
+    cy.get('input#mantine-rf').focus().type('Vietnam').type('{enter}');
+    //   .trigger('keydown', { key: 'Enter' });
   });
 });
