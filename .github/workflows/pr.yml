@@ -1,0 +1,37 @@
+name: Pull Request Check
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    name: Run test
+    runs-on: [self-hosted, linux]
+    container: cypress/included:latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: |
+          yarn --silent --ignore-scripts --frozen-lockfile
+        env:
+          # pass GitHub token to detect new build vs re-run build
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+      - name: Lint check
+        run: ./tools/scripts/ci.sh
+        env:
+          # pass GitHub token to detect new build vs re-run build
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+      # - name: Test e2e
+      #   run: |
+      #     yarn cypress install
+      #     yarn nx run-many --parallel=3 --target=e2e --coverage --all
+      #   env:
+      #     # pass GitHub token to detect new build vs re-run build
+      #     GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
