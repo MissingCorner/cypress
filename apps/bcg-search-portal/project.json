@@ -5,7 +5,7 @@
   "projectType": "application",
   "targets": {
     "e2e": {
-      "executor": "@nrwl/cypress:cypress",
+      "executor": "@nx/cypress:cypress",
       "options": {
         "cypressConfig": "apps/bcg-search-portal/cypress.config.ts",
         "baseUrl": "https://search-portal.bcg.mscnr.com",
@@ -13,10 +13,16 @@
       }
     },
     "lint": {
-      "executor": "@nrwl/linter:eslint",
+      "executor": "@nx/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": ["apps/bcg-search-portal/**/*.{js,ts}"]
+      }
+    },
+    "check": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "yarn tsc -p apps/bcg-search-portal/tsconfig.json --noEmit --pretty"
       }
     }
   },

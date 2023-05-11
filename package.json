@@ -3,28 +3,30 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "cypress": "nx e2e --component --watch"
+    "prepare": "husky install",
+    "cy": "nx e2e --component --watch"
   },
   "private": true,
   "dependencies": {
     "dotenv": "^16.0.3"
   },
   "devDependencies": {
-    "@nrwl/cypress": "^15.8.6",
-    "@nrwl/eslint-plugin-nx": "15.8.6",
-    "@nrwl/js": "15.8.6",
-    "@nrwl/linter": "15.8.6",
-    "@nrwl/workspace": "15.8.6",
+    "@nx/cypress": "16.1.4",
+    "@nx/eslint-plugin": "16.1.4",
+    "@nx/js": "16.1.4",
+    "@nx/linter": "16.1.4",
+    "@nx/workspace": "16.1.4",
     "@types/node": "16.11.7",
-    "@typescript-eslint/eslint-plugin": "^5.36.1",
-    "@typescript-eslint/parser": "^5.36.1",
-    "cypress": "12.9.0",
+    "@typescript-eslint/eslint-plugin": "5.59.5",
+    "@typescript-eslint/parser": "5.59.5",
+    "cypress": "12.12.0",
     "eslint": "~8.15.0",
     "eslint-config-prettier": "8.1.0",
     "eslint-plugin-cypress": "^2.10.3",
-    "nx": "15.8.6",
+    "husky": "^8.0.3",
+    "nx": "16.1.4",
     "prettier": "^2.6.2",
-    "typescript": "~4.9.5",
+    "typescript": "5.0.4",
     "vite": "^4.0.1"
   }
 }
