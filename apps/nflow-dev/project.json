@@ -5,7 +5,7 @@
   "projectType": "application",
   "targets": {
     "e2e": {
-      "executor": "@nrwl/cypress:cypress",
+      "executor": "@nx/cypress:cypress",
       "options": {
         "cypressConfig": "apps/nflow-dev/cypress.config.ts",
         "baseUrl": "https://dev.ncore.dev.v2.nuclent.com",
@@ -13,10 +13,16 @@
       }
     },
     "lint": {
-      "executor": "@nrwl/linter:eslint",
+      "executor": "@nx/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": ["apps/nflow-dev/**/*.{js,ts}"]
+      }
+    },
+    "check": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "yarn tsc -p apps/nflow-dev/tsconfig.json --noEmit --pretty"
       }
     }
   },
