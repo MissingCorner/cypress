@@ -14,9 +14,6 @@ describe('Project', () => {
   });
 
   it('should login', () => {
-    cy.get('[class="mantine-Text-root mantine-1aw9h4g"]').should(
-      'contain',
-      'Admin Application'
-    );
+    cy.get('[class="mantine-Text-root mantine-1aw9h4g"]').should('contain', 'Admin Application');
   });
 });
